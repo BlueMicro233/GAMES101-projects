@@ -1,31 +1,8 @@
-# 构建
-## Windows 11 (x86-64)
-**你需要安装**：
-- Windows Subsystem for Linux 2 (WSL 2)
-  - 🐧安装一个 Linux 发行版（<img src="https://cdn.simpleicons.org/archlinux/1793D1" height="25"/>Arch Linux, <img src="https://cdn.simpleicons.org/ubuntu/E95420" height="25"/>Ubuntu, etc.）
-- <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/clion/clion-original.svg" height="25"/> JetBrains CLion
-
-接着，在 Linux 下安装必要的 C++ 开发工具（CMake, 编译器等）：
-```shell
-sudo apt install build-essential
-unzip cmake
-```
-
-安装 GAMES101 所需的 **OpenCV** 计算机视觉库和 **Eigen** 向量数学库：
-```shell
-sudo apt install libeigen3-dev libopencv-dev
-```
-
-在 CLion 里进行如下配置：
-<p align="center">
-  <img src="https://github.com/BlueMicro233/GAMES101-projects/blob/main/assets/toolchain.png" width="737" height="550">
-</p>
-
-## macOS (aarch64)
-和 Linux 那边的步骤差不多（OpenCV, Eigen），并且在 CLion 里不需要额外配置工具链，只是 CMakeList.txt 需要改（可以交给 LLM 完成）。
-
 # 大纲
-只包含 Rendering 相关的部分，几何造型不感兴趣所以没做（
+只包含 Rendering 相关的部分，几何造型不感兴趣所以没做（~~不是懒~~
+
+大部分注释都是用英文写的——因为感觉写英文注释更顺手一点，因为这个课程本身就是 UC Santa Barbara 的 CS180/CS280* 直接平移过来的
+> *Fun Fact: UC Berkley 教的也其实差不多，一些课件内容甚至都是 literally 地完全一致233（如果你感兴趣，伯克利的那个课程的编号是 CS 184/284A，也值得一看。
 
 > [!NOTE]
 > GAMES101 的课程作业在对应标题内容的下一节课放出，并且在下一节课通常会有重要知识补充。
@@ -83,6 +60,32 @@ sudo apt install libeigen3-dev libopencv-dev
 <p align="center">
   <img src="https://github.com/BlueMicro233/GAMES101-projects/blob/main/hw6/image/bvh.png" width="640" height="480">
 </p>
+
+# 构建
+## Windows 11 (x86-64)
+**你需要安装**：
+- Windows Subsystem for Linux 2 (WSL 2)
+  - 🐧安装一个 Linux 发行版（<img src="https://cdn.simpleicons.org/archlinux/1793D1" height="25"/>Arch Linux, <img src="https://cdn.simpleicons.org/ubuntu/E95420" height="25"/>Ubuntu, etc.）
+- <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/clion/clion-original.svg" height="25"/> JetBrains CLion
+
+接着，在 Linux 下安装必要的 C++ 开发工具（CMake, 编译器等）：
+```shell
+sudo apt install build-essential
+unzip cmake
+```
+
+安装 GAMES101 所需的 **OpenCV** 计算机视觉库和 **Eigen** 向量数学库：
+```shell
+sudo apt install libeigen3-dev libopencv-dev
+```
+
+在 CLion 里进行如下配置：
+<p align="center">
+  <img src="https://github.com/BlueMicro233/GAMES101-projects/blob/main/assets/toolchain.png" width="737" height="550">
+</p>
+
+## macOS (aarch64)
+和 Linux 那边的步骤差不多（OpenCV, Eigen），并且在 CLion 里不需要额外配置工具链，只是 CMakeList.txt 需要改（可以交给 LLM 完成）。
 
 # 碎碎念
 GAMES101 是最好的中文图形学课程，不接受反驳。学习这门课程可以对图形学（尤其是闫老师的课很注重 Rendering 这块）在做什么有个自上而下的基础认知，不像国内很多图形学课从盘古开天辟地给你讲理论，结果到最后什么都不懂。
