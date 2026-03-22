@@ -261,7 +261,7 @@ inline Intersection Triangle::getIntersection(Ray ray)
 
     // Point inside triangle meets alpha, beta, gamma > 0 (barycentric coordinates).
     // We need tnear > 0, unless there's hit point behind the camera.
-    if ( ray.t > EPSILON && (1 - u - v) > 0.f && u > 0.f && v > 0.f )
+    if ( ray.t > 0.f && (1 - u - v) > 0.f && u > 0.f && v > 0.f )
     {
         intersection.happened = true;
         intersection.obj = this;

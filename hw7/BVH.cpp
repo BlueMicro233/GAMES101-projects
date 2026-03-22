@@ -114,9 +114,9 @@ Intersection BVHAccel::getIntersection(BVHBuildNode* node, const Ray& ray) const
     // note: division is slower than multiply, so we precompute invDir.
     // I find a problem that 1 / raydir may cause NaN when raydir = 0, so a numerical trick is applied.
     Vector3f invDir(
-    1.0f / (ray.direction.x != 0 ? ray.direction.x : 1e-9f),
-    1.0f / (ray.direction.y != 0 ? ray.direction.y : 1e-9f),
-    1.0f / (ray.direction.z != 0 ? ray.direction.z : 1e-9f)
+    1.0f / ray.direction.x,
+    1.0f / ray.direction.y,
+    1.0f / ray.direction.z
     );
     std::array<int, 3> dirIsNeg =
     {
