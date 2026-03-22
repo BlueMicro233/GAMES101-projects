@@ -9,7 +9,7 @@
 
 inline float deg2rad(const float& deg) { return deg * M_PI / 180.0; }
 
-const float EPSILON = 0.00001;
+const float EPSILON = std::numeric_limits<float>::epsilon();
 
 // The main render function. This where we iterate over all pixels in the image,
 // generate primary rays and cast these rays into the scene. The content of the
@@ -23,7 +23,7 @@ void Renderer::Render(const Scene& scene)
     Vector3f eye_pos(278, 273, -800);
 
     // change the spp value to change sample ammount
-    int spp = 1;
+    int spp = 16;
     std::cout << "SPP: " << spp << "\n";
     #pragma omp parallel for schedule(dynamic, 1)
     for (uint32_t j = 0; j < scene.height; ++j) {
