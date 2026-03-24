@@ -106,7 +106,7 @@ sudo apt install libeigen3-dev libopencv-dev
 
 在 CLion 里进行如下配置：
 <p align="center">
-  <img src="https://github.com/BlueMicro233/GAMES101-projects/blob/main/assets/toolchain.png" width="442" height="330">
+  <img src="https://github.com/BlueMicro233/GAMES101-projects/blob/main/assets/toolchain.png" width="737" height="550">
 </p>
 
 ## macOS (aarch64)
