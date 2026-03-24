@@ -3,6 +3,7 @@
 //
 
 #include "Scene.hpp"
+#include "Material.hpp"
 
 
 void Scene::buildBVH() {
@@ -57,27 +58,76 @@ bool Scene::trace(
     return (*hitObject != nullptr);
 }
 
+
 // Implementation of Path Tracing
 Vector3f Scene::castRay(const Ray &ray, int depth) const
 {
     // TODO Implement Path Tracing Algorithm here
-    // 1 shade(p, wo)
-    // 2 sampleLight(inter , pdf_light)
-    // 3 Get x, ws, NN, emit from inter
-    // 4 Shoot a ray from p to x
-    // 5 If the ray is not blocked in the middle
-    // 6 L_dir = emit * eval(wo, ws, N) * dot(ws, N) * dot(ws,
-    // NN) / |x-p|^2 / pdf_light
-    // 7
-    // 8 L_indir = 0.0
-    // 9 Test Russian Roulette with probability RussianRoulette
-    // 10 wi = sample(wo, N)
-    // 11 Trace a ray r(p, wi)
-    // 12 If ray r hit a non -emitting object at q
-    // 13 L_indir = shade(q, wi) * eval(wo, wi, N) * dot(wi, N)
-    // / pdf(wo, wi, N) / RussianRoulette
-    // 14
-    // 15 Return L_dir + L_indir
+    // shade(p, wo)
+    //  sampleLight(inter , pdf_light)
+    //  Get x, ws, NN, emit from inter
+    //  Shoot a ray from p to x
+    //  If the ray is not blocked in the middle
+    //  L_dir = emit * eval(wo, ws, N) * dot(ws, N) * dot(ws, NN) / |x-p|^2 / pdf_light
+    //  L_indir = 0.0
+    //  Test Russian Roulette with probability RussianRoulette
+    //  wi = sample(wo, N)
+    //  Trace a ray r(p, wi)
+    //  If ray r hit a non -emitting object at q
+    //  L_indir = shade(q, wi) * eval(wo, wi, N) * dot(wi, N) / pdf(wo, wi, N) / RussianRoulette
+    //  Return L_dir + L_indir
+    Vector3f L_dir = 0.f;
 
+    // initial hit point
+    Intersection p = intersect(ray);
 
+    if (!p.happened)
+    {
+        return Vector3f(0.f, 0.f, 0.f);
+    }
+
+    // If we directly shoot the light area, we return the emit energy.
+    // This is L_e term in the full rendering equation.
+    if (p.m->hasEmission())
+    {
+        return p.m->getEmission();
+    }
+
+    // outgoing direction
+    Vector3f wo = (ray.origin - p.coords).norm();
+
+    /*
+     * Direct Lighting
+     * We do light sampling here.
+     */
+
+    // x is sample point on scene area light
+    Intersection x;
+    float pdf_arealight = 0.f;
+    sampleLight(x, pdf_arealight);
+
+    // Direction between hit point and light samples.
+    Vector3f ws = normalize(x.coords - p.coords);
+
+    // We trace shadow ray to determine the direct lighting.
+    Ray shadowRay(p.coords, ws);
+    Intersection isBlock = intersect(shadowRay);
+
+    // Check if shadow ray's hit point is light sample x
+    // If there's occlusion cause by other object, the p is in shadow (related to x), so L_dir = 0.
+    if (isBlock.happened && (isBlock.coords - x.coords).norm() < 0.0001)
+    {
+        L_dir = x.emit
+                * p.m->eval(wo, ws, p.normal)
+                * dotProduct(ws, p.normal)
+                * dotProduct(-ws, x.normal)
+                / ((x.coords - p.coords).norm() * (x.coords - p.coords).norm())
+                / pdf_arealight;
+    }
+    else
+    {
+        L_dir = 0.f;
+    }
+
+    return L_dir;
 }
