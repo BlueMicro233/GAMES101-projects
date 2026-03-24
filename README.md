@@ -81,6 +81,25 @@ $$
 
 **“名字越短，事情越大。”——Lingqi Yan**
 
+**路径追踪直接光照（Path Traced Direct Illumination）**
+*当代 3A 游戏光线追踪阴影（Ray Traced Shadows）的实现方式。*
+<p align="center">
+  <figure style="display:inline-block; text-align:center;">
+    <img src="https://github.com/BlueMicro233/GAMES101-projects/blob/main/assets/DI1spp.png" width="392" height="392">
+    <figcaption>1 spp</figcaption>
+  </figure>
+
+  <figure style="display:inline-block; text-align:center;">
+    <img src="https://github.com/BlueMicro233/GAMES101-projects/blob/main/assets/DI16spp.png" width="392" height="392">
+    <figcaption>16 spp</figcaption>
+  </figure>
+
+  <figure style="display:inline-block; text-align:center;">
+    <img src="https://github.com/BlueMicro233/GAMES101-projects/blob/main/assets/DI128spp.png" width="392" height="392">
+    <figcaption>128 spp</figcaption>
+  </figure>
+</p>
+
 
 # 构建
 ## Windows 11 (x86-64)
