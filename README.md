@@ -115,7 +115,7 @@ sudo apt install libeigen3-dev libopencv-dev
 > [!NOTE]
 > Path Tracing 由于只是粗略地引入了**多线程并行**加速，macOS 上可能无法直接正常运行（大概率遇到进度条鬼畜之类的问题），所以可能暂时需要把 `Renderer.cpp` 渲染循环附近的 `#pragma omp parallel for schedule(dynamic, 1)` 以及 `#pragma omp critical` 的部分删除，这会牺牲一些性能。布朗尼正在努力修复这个问题。
 > 
-> 实在是想要直接运行，确保你已安装 LLVM 框架（`brew install llvm`）并按如下命令生成构建文件：
+> 如果实在是想要直接运行，请确保你已安装 LLVM 框架（`brew install llvm`）并按如下命令生成构建文件：
 
 ```bash
 cmake .. \
