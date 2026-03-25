@@ -112,6 +112,15 @@ sudo apt install libeigen3-dev libopencv-dev
 ## macOS (aarch64)
 和 Linux 那边的步骤差不多（OpenCV, Eigen），并且在 CLion 里不需要额外配置工具链，只是 CMakeList.txt 需要改（可以交给 LLM 完成）。
 
+> [!NOTE]
+> Path Tracing 由于引入了**多线程并行**加速，macOS 上可能无法直接正常运行（大概率遇到进度条鬼畜之类的问题），所以可能暂时需要把 `Renderer.cpp` 渲染循环附近的 `#pragma omp parallel for schedule(dynamic, 1)` 以及 `#pragma omp critical` 的部分删除，会牺牲一些性能，布朗尼正在努力修复这个问题。
+> 实在是想要直接运行，建议确保你已安装 LLVM 框架（`brew install llvm`）并按如下命令生成构建文件：
+```bash
+cmake .. \
+  -DCMAKE_C_COMPILER=/opt/homebrew/opt/llvm/bin/clang \
+  -DCMAKE_CXX_COMPILER=/opt/homebrew/opt/llvm/bin/clang++
+```
+
 # 碎碎念
 GAMES101 是最好的中文图形学课程，不接受反驳。学习这门课程可以对图形学（尤其是闫老师的课很注重 Rendering 这块）在做什么有个自上而下的基础认知，不像国内很多图形学课从盘古开天辟地给你讲理论，结果到最后什么都不懂。
 
