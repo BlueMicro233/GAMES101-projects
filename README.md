@@ -86,6 +86,16 @@ $$
 |:--:|:--:|:--:|
 | 1 spp | 16 spp | 128 spp |
 
+**路径追踪全局光照（Path Traced Global Illumination）**
+
+*模拟世界。*
+
+*如今它已开始在各大游戏普及（例如《半条命 2: RTX》、《赛博朋克 2077》以及《生化危机 9：安魂曲》等）。*
+
+| ![](https://github.com/BlueMicro233/GAMES101-projects/blob/main/assets/GI1spp.png) | ![](https://github.com/BlueMicro233/GAMES101-projects/blob/main/assets/GI16spp.png) | ![](https://github.com/BlueMicro233/GAMES101-projects/blob/main/assets/GI128spp.png) |
+|:--:|:--:|:--:|
+| 1 spp | 16 spp | 128 spp |
+
 # 构建
 ## Windows 11 (x86-64)
 **你需要安装**：
